@@ -1,7 +1,18 @@
-<div class="mt-4">
-    @if (isset($microposts))
-        <ul class="list-none">
-            @foreach ($microposts as $micropost)
+@extends('layouts.app')
+
+@section('content')
+    <div class="sm:grid sm:grid-cols-3 sm:gap-10">
+        <aside class="mt-4">
+            {{-- ユーザー情報 --}}
+            @include('users.card')
+        </aside>
+        <div class="sm:col-span-2 mt-4">
+            {{-- タブ --}}
+            @include('users.navtabs')
+            <div class="mt-4">
+                {{-- ユーザー一覧 --}}
+                @if($favorites->count() > 0)
+            @foreach ($favorites as $micropost)
                 <li class="flex items-start gap-x-2 mb-4">
                     {{-- 投稿の所有者のメールアドレスをもとにGravatarを取得して表示 --}}
                     <div class="avatar">
@@ -74,17 +85,15 @@
                             @endif
                             
                         </div>
-                        
-                        
-                        
-                        
-                        
-                        
                     </div>
                 </li>
             @endforeach
         </ul>
         {{-- ページネーションのリンク --}}
-        {{ $microposts->links() }}
+        {{ $favorites->links() }}
     @endif
-</div>
+            </div>
+        </div>
+    </div>    
+@endsection
+

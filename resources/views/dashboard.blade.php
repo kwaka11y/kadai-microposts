@@ -8,6 +8,7 @@
                 @include('users.card')
             </aside>
             <div class="sm:col-span-2">
+                
                 {{-- 投稿フォーム --}}
                 @include('microposts.form')
                 {{-- 投稿一覧 --}}
